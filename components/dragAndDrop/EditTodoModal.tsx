@@ -30,7 +30,7 @@ const EditTodoModal = (props: EditTodoProps) => {
             .single();
 
         if (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
 
         if (data) {

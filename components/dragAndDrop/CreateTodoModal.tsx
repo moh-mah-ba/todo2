@@ -28,7 +28,7 @@ const CreateTodoModal = (props: NewTodoProps) => {
             }]);
 
         if (error) {
-            console.log('create todo error', error.message);
+            // console.log('create todo error', error.message);
         }
 
         setInput('');

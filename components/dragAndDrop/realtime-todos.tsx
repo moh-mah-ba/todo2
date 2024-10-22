@@ -62,7 +62,7 @@ export default function RealtimeTodos({ todos, refreshTodos }: RealtimeTodosProp
 
     useEffect(() => {
         // if (!supabase) return;
-    console.log( refreshTodos());
+        console.log(refreshTodos());
         // const channel = supabase
         //     .channel('realtime todos')
         //     .on(
@@ -74,14 +74,14 @@ export default function RealtimeTodos({ todos, refreshTodos }: RealtimeTodosProp
         //         }
         //     )
         //     .subscribe();
-    
+
         // // Clean up the subscription when the component is unmounted
         // return () => {
         //     supabase.removeChannel(channel);
         // };
     }, [supabase, refreshTodos]);
-    
-    
+
+
 
 
     return (

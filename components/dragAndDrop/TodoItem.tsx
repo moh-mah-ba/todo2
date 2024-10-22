@@ -42,7 +42,7 @@ const TodoItem = (props: TodoItemProps) => {
             .match({ id, clerk_user_id: userId });
 
         if (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
 
         toast.success('Todo deleted successfully.');
