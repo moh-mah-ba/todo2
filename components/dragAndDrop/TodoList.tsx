@@ -2,9 +2,7 @@ import React from 'react';
 import { Stack, Typography, Grid, Divider, Box } from '@mui/material';
 import { useDroppable } from '@dnd-kit/core';
 import { TodosType } from '@/utils/types/helper.types';
-
-
-import RealtimeTodos from "./realtime-todos";
+import RealtimeTodos from './realtime-todos';
 
 type TodoListProps = {
     todos: TodosType[];
@@ -28,13 +26,10 @@ const TodoList = (props: TodoListProps) => {
         <Grid item md={3}>
             <Stack spacing={2} sx={style} ref={setNodeRef}>
                 <Box>
-                    <Typography variant="h6">{level}</Typography>
+                    <Typography variant="h5">{level}</Typography>
                     <Divider />
                 </Box>
-                {/* {todos.map((todo) => (
-                    <TodoItem key={todo.id} todo={todo} refreshTodos={refreshTodos} />
-                ))} */}
-                <RealtimeTodos todos={todos ?? []} refreshTodos={refreshTodos}/>
+                <RealtimeTodos todos={todos ?? []} refreshTodos={refreshTodos} />
             </Stack>
         </Grid>
     );

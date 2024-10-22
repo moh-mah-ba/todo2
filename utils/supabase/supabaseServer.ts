@@ -26,6 +26,7 @@ export async function createClerkSupabaseClient() {
                 },
                 set(name: string, value: string, options: CookieOptions) {
                     try {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                         cookieStore.set({ name, value, ...options });
                     } catch (error) {
                         // Handle the error
@@ -33,6 +34,7 @@ export async function createClerkSupabaseClient() {
                 },
                 remove(name: string, options: CookieOptions) {
                     try {
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
                         cookieStore.set({ name, value: '', ...options });
                     } catch (error) {
                         // Handle the error

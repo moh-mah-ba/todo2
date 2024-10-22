@@ -1,10 +1,9 @@
-"use client";
+'use client';
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import TodoItem from './TodoItem';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { useEffect } from 'react';
 import { TodosType } from '@/utils/types/helper.types';
+import TodoItem from './TodoItem';
 
 type RealtimeTodosProps = {
     todos: TodosType[];
@@ -13,76 +12,30 @@ type RealtimeTodosProps = {
 
 export default function RealtimeTodos({ todos, refreshTodos }: RealtimeTodosProps) {
     const supabase = createClientComponentClient();
-    const router = useRouter();
-
-    // useEffect(() => {
-    //     const channel = supabase
-    //         .channel("realtime todos")
-    //         .on(
-    //             "postgres_changes",
-    //             {
-    //                 event: "*",
-    //                 schema: "public",
-    //                 table: "todos",
-    //             },
-    //             () => {
-    //                 refreshTodos(); // Call the refreshTodos function to refresh the todos list
-    //             }
-    //         )
-    //         .subscribe();
-
-    //     return () => {
-    //         supabase.removeChannel(channel);
-    //     };
-    // }, [supabase, refreshTodos]);
-
-    // useEffect(() => {
-    //     const channel = supabase
-    //         .channel("realtime todos")
-    //         .on(
-    //             "postgres_changes",
-    //             {
-    //                 event: "*",
-    //                 schema: "public",
-    //                 table: "todos",
-    //             },
-    //             (payload) => {
-    //                 console.log("Change received!", payload); // Log the change
-    //                 refreshTodos(); // Refresh the todos list
-    //             }
-    //         )
-    //         .subscribe((status) => {
-    //             console.log("Subscription status:", status);
-    //         });
-
-    //     return () => {
-    //         supabase.removeChannel(channel);
-    //     };
-    // }, [supabase, refreshTodos]);
 
     useEffect(() => {
-        // if (!supabase) return;
-        console.log(refreshTodos());
-        // const channel = supabase
-        //     .channel('realtime todos')
-        //     .on(
-        //         'postgres_changes',
-        //         { event: '*', schema: 'public', table: 'todos' }, 
-        //         (payload) => {
-        //             console.log('Change received!', payload);
-        //             refreshTodos(); 
-        //         }
-        //     )
-        //     .subscribe();
+        const channel = supabase
+            .channel('realtime todos')
+            .on(
+                'postgres_changes',
+                {
+                    event: '*',
+                    schema: 'public',
+                    table: 'todos',
+                },
+                () => {
+                    // console.log('Change received!', payload); // Log the change
+                    refreshTodos(); // Refresh the todos list
+                },
+            )
+            .subscribe(() => {
+                // console.log('Subscription status:', status);
+            });
 
-        // // Clean up the subscription when the component is unmounted
-        // return () => {
-        //     supabase.removeChannel(channel);
-        // };
+        return () => {
+            supabase.removeChannel(channel);
+        };
     }, [supabase, refreshTodos]);
-
-
-
 
     return (
         <>

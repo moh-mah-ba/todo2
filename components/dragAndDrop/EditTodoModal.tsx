@@ -51,7 +51,7 @@ const EditTodoModal = (props: EditTodoProps) => {
             .eq('clerk_user_id', userId);
 
         if (error) {
-            console.log(error.message);
+            // console.log(error.message);
         }
 
         toast.success('Todo updated successfully.');
